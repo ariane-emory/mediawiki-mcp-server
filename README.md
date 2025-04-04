@@ -1,12 +1,12 @@
 # MediaWiki MCP Server 🚀
 
-A powerful MediaWiki Multi-Call Protocol (MCP) server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content programmatically! 📚
+A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
 ## Features ✨
 
 - 🔍 Search Wikipedia pages with customizable result limits
 - 📖 Retrieve detailed page content
-- 🌐 Configurable base URL support, support basically any wiki site using MediaWiki. (e.g. Game Wiki)
+- 🌐 Configurable base URL support, support basically any wiki site using MediaWiki. (e.g. Game Wiki <https://noita.wiki.gg/zh>)
 
 ## Configuration 🔧
 
