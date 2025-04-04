@@ -4,21 +4,8 @@ A MCP server that provides seamless interaction with Wikipedia's API. This tool 
 
 ## Features ✨
 
-- 🔍 Search Wikipedia pages with customizable result limits
+- 🔍 Search wiki pages with customizable wiki site. e.g. wikipedia.org, fandom.com, wiki.gg and more!
 - 📖 Retrieve detailed page content
-- 🌐 Configurable base URL support, support basically any wiki site using MediaWiki. (e.g. Game Wiki <https://noita.wiki.gg/zh>)
-
-## Configuration 🔧
-
-The server can be configured through environment variables and command-line arguments:
-
-- **HTTP Proxy** (Optional): Set via environment variable
-
-```bash
-export HTTP_PROXY="http://your-proxy-server:port"
-```
-
-- **Base URL**: Default is "<https://en.wikipedia.org/w/>", can be modified via command-line argument
 
 ## Usage 💻
 
@@ -29,7 +16,7 @@ export HTTP_PROXY="http://your-proxy-server:port"
 uv sync
 ```
 
-3.
+3. Configure in your client:
 
 Command:
 
@@ -39,13 +26,23 @@ uv
 
 Args:
 
+The server defaults to using <https://en.wikipedia.org/>. Also, you can make the server search other wiki sites!
+
+To see if a wiki site works with this server, check if it uses MediaWiki software (usually shown by an icon at the bottom of the site).
+
+To check further and find the endpoint (usually the website's domain, like <https://mediawiki.org/>), check by going to base-url/rest.php/v1/page in a browser (like <https://noita.wiki.gg/rest.php/v1/page>) and see if the output looks right. If not, add '/w' to the base URL and try again.
+
+![](/imgs/PixPin_2025-04-04_19-41-55.png)
+
+Then, set this endpoint as --base-url.
+
 ```bash
 run
 --directory
-<path-to-server>src/mediawiki_mcp_server
+path/to/project/src/mediawiki_mcp_server
 mediawiki-mcp-server
 --base-url
-<mediawiki-site-you-want>
+https://example.com/
 ```
 
 Envs:
@@ -72,6 +69,16 @@ async def get_page(title: str)
 ```
 
 - `title`: The exact title of the Wikipedia page to retrieve
+
+## Development 👨‍💻
+
+```bash
+npx @modelcontextprotocol/inspector uv run mediawiki-mcp-server
+```
+
+Here's some document that might help:
+
+- <https://www.mediawiki.org/api/rest_v1/>
 
 ## Contributing 🤝
 
