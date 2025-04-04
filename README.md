@@ -2,7 +2,7 @@
 
 A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
-https://github.com/user-attachments/assets/b5d9c5f3-a60e-48ea-8b4b-f1a7524d4fbb
+<https://github.com/user-attachments/assets/b5d9c5f3-a60e-48ea-8b4b-f1a7524d4fbb>
 
 ## Features ✨
 
@@ -38,6 +38,22 @@ To check further and find the endpoint (usually the website's domain, like <http
 
 Then, set this endpoint as --base-url.
 
+```json
+{
+    "command": "uvx",
+    "args": [
+        "mediawiki-mcp-server",
+        "--base-url", // if needed
+        "https://example.com/" // if needed
+    ],
+    "env": {
+        "HTTP_PROXY": "http://example.com:port" // if needed
+    }
+}
+```
+
+Or, if you want to run this server from source:
+
 ```bash
 run
 --directory
@@ -45,12 +61,6 @@ path/to/project/src/mediawiki_mcp_server
 mediawiki-mcp-server
 --base-url
 https://example.com/
-```
-
-Envs:
-
-```bash
-HTTP_PROXY=http://host:port
 ```
 
 ## Supported Tools 🛠
@@ -78,10 +88,14 @@ async def get_page(title: str)
 npx @modelcontextprotocol/inspector uv run mediawiki-mcp-server
 ```
 
-Here's some document that might help:
+Here are some documents that might help:
 
 - <https://www.mediawiki.org/api/rest_v1/>
 
 ## Contributing 🤝
 
 This server is under development. Contributions are welcome! Feel free to submit issues and pull requests.
+
+## Related Projects ♥️
+
+- [Cherry Studio](https://github.com/CherryHQ/cherry-studio): A desktop client that supports for multiple LLM providers. MCP is supported.
