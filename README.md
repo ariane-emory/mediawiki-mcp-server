@@ -2,6 +2,8 @@
 
 A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
+https://github.com/user-attachments/assets/b5d9c5f3-a60e-48ea-8b4b-f1a7524d4fbb
+
 ## Features ✨
 
 - 🔍 Search wiki pages with customizable wiki site. e.g. wikipedia.org, fandom.com, wiki.gg and more!
