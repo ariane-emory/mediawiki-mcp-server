@@ -1,5 +1,6 @@
 # MediaWiki MCP Server 🚀
-[![smithery badge](https://smithery.ai/badge/@shiquda/mediawiki-mcp-server)](https://smithery.ai/server/@shiquda/mediawiki-mcp-server)
+
+[![smithery badge](https://smithery.ai/badge/@shiquda/mediawiki-mcp-server)](https://smithery.ai/server/@shiquda/mediawiki-mcp-server) ![](https://img.shields.io/badge/Python-3.13-informational?logo=&style=flat&logoColor=00bfff&color=005566&labelColor=00bfe6) ![](https://img.shields.io/badge/build%20with-uv-informational?logo=&style=flat&logoColor=333333&color=622867&labelColor=de5fe9)
 
 A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
@@ -13,21 +14,7 @@ A MCP server that provides seamless interaction with Wikipedia's API. This tool 
 ## Usage 💻
 
 1. Ensure that uv is installed on your device.
-2. Clone this repo and execute:
-
-```bash
-uv sync
-```
-
-3. Configure in your client:
-
-Command:
-
-```bash
-uv
-```
-
-Args:
+2. Configure in your client:
 
 The server defaults to using <https://en.wikipedia.org/>. Also, you can make the server search other wiki sites!
 
@@ -41,45 +28,51 @@ Then, set this endpoint as --base-url.
 
 ```json
 {
-    "command": "uvx",
-    "args": [
+  "mcpServers": {
+    "mediawiki-mcp-server": {
+      "command": "uvx",
+      "args": [
         "mediawiki-mcp-server",
-        "--base-url", // if needed
-        "https://example.com/" // if needed
-    ],
-    "env": {
-        "HTTP_PROXY": "http://example.com:port" // if needed
+        "--base-url", "https://example.com/"
+      ],
+      "env": {
+        "HTTP_PROXY": "http://example.com:port"
+      }
     }
+  }
 }
 ```
 
 Or, if you want to run this server from source:
 
-```bash
-run
---directory
-path/to/project/src/mediawiki_mcp_server
-mediawiki-mcp-server
---base-url
-https://example.com/
+```json
+{
+  "mcpServers": {
+    "mediawiki-mcp-server": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory", 
+        "mediawiki-mcp-server",
+        "path/to/project/src/mediawiki_mcp_server",
+        "--base-url", "https://example.com/"
+      ],
+      "env": {
+        "HTTP_PROXY": "http://example.com:port"
+      }
+    }
+  }
+}
 ```
 
 ## Supported Tools 🛠
 
 ### Search
 
-```python
-async def search(query: str, limit: int = 5)
-```
-
 - `query`: Search term (preferably short and focused)
 - `limit`: Maximum number of results to return (default: 5)
 
 ### Get Page
-
-```python
-async def get_page(title: str)
-```
 
 - `title`: The exact title of the Wikipedia page to retrieve
 
