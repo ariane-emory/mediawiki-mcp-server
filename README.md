@@ -1,4 +1,5 @@
 # MediaWiki MCP Server 🚀
+[![smithery badge](https://smithery.ai/badge/@shiquda/mediawiki-mcp-server)](https://smithery.ai/server/@shiquda/mediawiki-mcp-server)
 
 A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
