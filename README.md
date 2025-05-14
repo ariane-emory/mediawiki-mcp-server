@@ -1,6 +1,8 @@
 # MediaWiki MCP Server 🚀
 
-[![smithery badge](https://smithery.ai/badge/@shiquda/mediawiki-mcp-server)](https://smithery.ai/server/@shiquda/mediawiki-mcp-server) ![](https://img.shields.io/badge/Python-3.13-informational?logo=&style=flat&logoColor=00bfff&color=005566&labelColor=00bfe6) ![](https://img.shields.io/badge/build%20with-uv-informational?logo=&style=flat&logoColor=333333&color=622867&labelColor=de5fe9)
+[![smithery badge](https://smithery.ai/badge/@shiquda/mediawiki-mcp-server)](https://smithery.ai/server/@shiquda/mediawiki-mcp-server) ![](https://img.shields.io/badge/Python-3.13-informational?logo=&style=flat&logoColor=00bfff&color=005566&labelColor=00bfe6) ![](https://img.shields.io/badge/build%20with-uv-informational?logo=&style=flat&logoColor=333333&color=622867&labelColor=de5fe9) 
+
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/shiquda-mediawiki-mcp-server-badge.png)](https://mseep.ai/app/shiquda-mediawiki-mcp-server)
 
 A MCP server that provides seamless interaction with Wikipedia's API. This tool allows you to search and retrieve Wikipedia content with LLMs 🤖!
 
