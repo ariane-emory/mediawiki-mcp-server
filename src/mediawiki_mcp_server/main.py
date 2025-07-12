@@ -88,15 +88,36 @@ def main():
     parser.add_argument(
         "--base-url",
         default=config.base_url,
-        help=f"Base URL for the MediaWiki API (default: {config.base_url})",
+        help=f"Base URL for the MediaWiki API (default: {config.base_url}``)",
+    )
+    parser.add_argument(
+        "--http",
+        action="store_true",
+        help="Run server as streamable-http (instead of stdio)",
+    )
+    parser.add_argument(
+        "--sse",
+        action="store_true",
+        help="Run server as sse-http (instead of stdio)",
+    )
+    parser.add_argument(
+        "--port",
+        default=8000,
+        type=int,
+        help="Default port for http transport (default: 8000)",
     )
     args = parser.parse_args()
-
     config.base_url = (
         args.base_url if args.base_url.endswith("/") else args.base_url + "/"
     )
-
-    mcp.run(transport="stdio")
+    transport = "stdio"
+    if args.http or args.sse:
+        mcp.settings.port = args.port
+        if args.http:
+            transport = "streamable-http"
+        elif args.sse:
+            transport = "sse"
+    mcp.run(transport=transport)
 
 
 if __name__ == "__main__":

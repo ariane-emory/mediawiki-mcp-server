@@ -24,9 +24,28 @@ To see if a wiki site works with this server, check if it uses MediaWiki softwar
 
 To check further and find the endpoint (usually the website's domain, like <https://mediawiki.org/>), check by going to base-url/rest.php/v1/page in a browser (like <https://noita.wiki.gg/rest.php/v1/page>) and see if the output looks right. If not, add '/w' to the base URL and try again.
 
+Then, set this endpoint as --base-url:
+
 ![](/imgs/PixPin_2025-04-04_19-41-55.png)
 
-Then, set this endpoint as --base-url.
+Available transports: stdio (default), streamable-http (http://localhost/mcp), and SSE (http://localhost/sse). See -h for all options.
+
+```bash
+uvx mediawiki-mcp-server --h
+usage: main.py [-h] [--base-url BASE_URL] [--http] [--sse] [--port PORT]
+
+MediaWiki MCP Server
+
+options:
+  -h, --help           show this help message and exit
+  --base-url BASE_URL  Base URL for the MediaWiki API (default: https://en.wikipedia.org/w/``)
+  --http               Run server as streamable-http (instead of stdio)
+  --sse                Run server as sse-http (instead of stdio)
+  --port PORT          Default port for http transport (default: 8000)
+
+```
+
+Example JSON configurations:
 
 ```json
 {
