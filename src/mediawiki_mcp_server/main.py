@@ -10,7 +10,7 @@ USER_AGENT = "mediawiki-mcp-server/1.0"
 
 class Config:
     base_url = "https://en.wikipedia.org/w/"
-    path_prefix = "rest.php/v1/"
+    path_prefix = "api.php"
 
 
 config = Config()
@@ -25,18 +25,19 @@ def get_proxy_settings():
 
 
 # helper function to make a request to the mediawiki api
-async def make_request(path: str, params: dict) -> httpx.Response:
+async def make_request(params: dict) -> httpx.Response:
     headers = {
         "User-Agent": USER_AGENT,
     }
-    url = config.base_url + config.path_prefix + path
+    url = config.base_url + config.path_prefix
+    params["format"] = "json"  # Always request JSON format
     proxies = get_proxy_settings()
     async with httpx.AsyncClient(proxies=proxies, follow_redirects=True) as client:
         try:
             response = await client.get(url, headers=headers, params=params)
             if response.status_code in (301, 302, 303, 307, 308):
                 final_response = await client.get(
-                    response.headers["Location"], headers=headers
+                    response.headers["Location"], headers=headers, params=params
                 )
                 return final_response.json()
             return response.json()
@@ -52,7 +53,7 @@ async def make_request(path: str, params: dict) -> httpx.Response:
 
 
 @mcp.tool()
-async def search(query: str, limit: int = 5):
+async def wiki_search(query: str, limit: int = 5):
     """
     Search for a wiki page. The shorter the request, the better, preferably containing only the main term to be searched.
     Args:
@@ -61,12 +62,13 @@ async def search(query: str, limit: int = 5):
     Returns:
         A list of pages that match the query
     """
-    path = "search/page"
     params = {
-        "q": query,
-        "limit": limit,
+        "action": "query",
+        "list": "search",
+        "srsearch": query,
+        "srlimit": limit,
     }
-    response = await make_request(path, params)
+    response = await make_request(params)
     return response
 
 
@@ -78,8 +80,28 @@ async def get_page(title: str):
     Returns:
         The page content
     """
-    path = f"page/{title}"
-    response = await make_request(path, {})
+    # First try with extracts (newer API)
+    params = {
+        "action": "query",
+        "titles": title,
+        "prop": "extracts|info",
+        "inprop": "url",
+        "explaintext": True,
+    }
+    response = await make_request(params)
+    
+    # Check if we got an error due to unsupported parameters
+    if "warnings" in response and ("extracts" in str(response["warnings"]) or "explaintext" in str(response["warnings"])):
+        # Fallback to older API format
+        params = {
+            "action": "query",
+            "titles": title,
+            "prop": "info|revisions",
+            "inprop": "url",
+            "rvprop": "content",
+        }
+        response = await make_request(params)
+    
     return response
 
 
