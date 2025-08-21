@@ -1,3 +1,22 @@
+# Fork info:
+Forked to work with the older Mediawiki API used by Travellerwiki. 
+
+Sample configuration:
+```
+  "mcpServers": {
+    "traveller_wiki": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+       "/Users/$USER/python/mediawiki-mcp-server",
+        "mediawiki-mcp-server",
+        "--base-url", "https://wiki.travellerrpg.com/"
+      ]
+    }
+  }
+```
+
 <b>Outdated. Please use https://github.com/ProfessionalWiki/MediaWiki-MCP-Server instead!</b>
 
 # MediaWiki MCP Server 🚀
