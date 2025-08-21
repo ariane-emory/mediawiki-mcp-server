@@ -17,6 +17,8 @@ Sample configuration:
   }
 ```
 
+# Original README.md content:
+
 <b>Outdated. Please use https://github.com/ProfessionalWiki/MediaWiki-MCP-Server instead!</b>
 
 # MediaWiki MCP Server 🚀
