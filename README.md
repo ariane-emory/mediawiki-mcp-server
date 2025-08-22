@@ -1,7 +1,7 @@
 # Fork info:
-Forked to work with the older Mediawiki API used by Travellerwiki. 
+This is a forked modified to work with the older Mediawiki API used by the Traveller Wiki, which has no rest.php endpoint and instead only an api.php endpoint. 
 
-Sample configuration:
+This is a sample configuration for use with the Traveller Wiki:
 ```
   "mcpServers": {
     "traveller_wiki": {
